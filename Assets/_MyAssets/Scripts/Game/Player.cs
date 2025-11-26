@@ -17,8 +17,6 @@ public class Player : MonoBehaviour
     {
 	float directionX = Input.GetAxisRaw("Horizontal");
 	float directionY = Input.GetAxisRaw("Vertical");
-	Debug.Log(Input.GetAxisRaw("Vertical"));
-	Debug.Log(Input.GetAxisRaw("Horizontal"));
 
 	_direction = new Vector2(directionX, directionY);
 	_direction.Normalize();

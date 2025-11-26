@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Characteristiques")]
+    [SerializeField] private Player _player;
+    [SerializeField] private float _speed;
+
+    private Vector2 _direction;
+
     void Start()
     {
-        
+	_player = FindAnyObjectByType<Player>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Move();
+    }
+    private void Move()
+    {
+	Vector3 targetPosition = _player.gameObject.transform.position;
+	_direction = new Vector2(targetPosition.x, targetPosition.y);
+	_direction.Normalize();
+
+	transform.Translate(_direction * Time.deltaTime * _speed);
     }
 }
