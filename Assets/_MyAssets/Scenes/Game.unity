@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawn: {fileID: 5720321557207941965, guid: 5e2cdfaf9b20a2b46b44fc74f73ceb76, type: 3}
-  _rate: 1
+  _rate: 0.5
   _rateRandomizer: 0.5
   _spawnActif: 1
   _debug: 0
