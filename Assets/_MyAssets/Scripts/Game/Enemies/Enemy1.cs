@@ -11,24 +11,26 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _speed = 0.4f;
 
     [Header("Par raport au joueur")]
-    [SerializeField] private float _minDistanceTarget = 0.6f;
-    [SerializeField] private float _minDistanceTargetRandomizer = 0.2f;
+    [SerializeField] private float _minDistance = 0.6f;
+    [SerializeField] private float _minDistanceRandomizer = 0.2f;
 
-    [Header("Using a circle collider? I kind of have to")]
     [SerializeField] private float _colliderRadius = 0.03f;
-    [SerializeField] private bool _usingCircleCollider = true;
+
+    [SerializeField] private bool _encercle = true;
 
     [Header("Debug")]
     [SerializeField] private bool _debug = false;
 
     private GameObject _target;
     private bool _isObstructed = false;
+    private static RaycastHit2D[] _iDoNotNeedThis = new RaycastHit2D[1];
+    private Vector2 _encerclementModifier = new Vector2(0f, 0f);
 
     void Start()
     {
 	_target = GameObject.FindGameObjectsWithTag(_targetTag)[0];
-	_minDistanceTarget = _minDistanceTarget + (Random.Range(0f, (_minDistanceTarget * _minDistanceTargetRandomizer)) - (_minDistanceTargetRandomizer / 2));
-	if (_encercle) { _encerclementModifier = CalculateRandomEncerclementVector(_minDistanceTarget); }
+	_minDistance = _minDistance + (Random.Range(0f, (_minDistance * _minDistanceRandomizer)) - (_minDistanceRandomizer / 2));
+	if (_encercle) { _encerclementModifier = CalculateRandomEncerclementVector(_minDistance); }
     }
 
     void Update()
@@ -68,5 +70,13 @@ public class Enemy : MonoBehaviour
 	    if (_debug) { Debug.DrawLine(gameObject.transform.position, targetPosition, Color.red, 0.1f); }
 	    transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPosition, _speed * Time.deltaTime);
 	}
+    }
+
+    private Vector2 CalculateRandomEncerclementVector(float minDistance)
+    {
+	float angle = Random.Range(0f, 2 * Mathf.PI);
+	float y = (Mathf.Sin(angle) * minDistance);
+	float x = (Mathf.Cos(angle) * minDistance);
+	return new Vector2(x, y);
     }
 }

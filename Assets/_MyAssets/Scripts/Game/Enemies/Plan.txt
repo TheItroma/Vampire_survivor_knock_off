@@ -1,0 +1,33 @@
+Todo :
+
+    Look at how vampire survivor managed its enemies
+
+    Enemy movement methodes :
+
+	- Ecolie cell type : if getting closer, Keep moving, if getting far away tumble. Goes very fast for a cool enemy
+
+	- Regular old attempt at one that can see :
+	  Literally just Make sure the distance to allies isn't too low. 
+	  Find into what patern its projectiles would take.
+
+	- Jumping Kamikaze : Very easy to implement but fun? (Very simple expanding circle type thing) deals damage to allies but more so to target.
+	
+	- Bull : just rams into allies to ram into the target, triangle collider, deals damage like Kamikaze knockback?
+	
+
+	Whould be cool if there where items that would allow you to negate the effects of certain of the ennemies. 
+	Say, for the bull, some sort of shield that allows you to take no damage but free knockback. 
+	Some bullet riposte for the generic ennemies where it would have a percentage of negate damage and send the bullet back
+	Etc...
+	
+
+	Categories that you can pick to have more chance of a fun build?
+	How would the item randomization work?
+	Make a shop much like deadlock which you could access as a particular mechanic between waves?
+
+
+	Destroying spawners heals you.
+
+	Do spawners regenerate?
+
+	One big space or multiple rooms?
