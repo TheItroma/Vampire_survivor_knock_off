@@ -54,12 +54,13 @@ public class Enemy : MonoBehaviour
     private void Move()
     {
 	Vector2 targetPosition = _target.transform.position;
+	Debug.Log(targetPosition);
 
 	if (Vector2.Distance(gameObject.transform.position, targetPosition) > _minDistance && !_isObstructed)
 	{
 	    if (_debug) { Debug.DrawLine(gameObject.transform.position, targetPosition, Color.red, 0.5f); }
-	    Debug.Log(targetPosition);
-	    transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPosition, _speed * Time.deltaTime);
+	    targetPosition.Normalize();
+	    transform.Translate(+(gameObject.transform.position, targetPosition) * Time.deltaTime * _speed);
 	}
     }
 }
