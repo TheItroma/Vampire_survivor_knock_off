@@ -8,65 +8,26 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string _targetTag = "Player";
     
     [Header("Mouvement")]
-    [SerializeField] private float _speed = 0.4f;
+    [SerializeField] private float _speed = 3.0f;
 
-    [Header("Par raport au joueur")]
-    [SerializeField] private float _minDistanceTarget = 0.6f;
-    [SerializeField] private float _minDistanceTargetRandomizer = 0.2f;
-
-    [Header("Using a circle collider? I kind of have to")]
-    [SerializeField] private float _colliderRadius = 0.03f;
-    [SerializeField] private bool _usingCircleCollider = true;
-
-    [Header("Debug")]
-    [SerializeField] private bool _debug = false;
 
     private GameObject _target;
-    private bool _isObstructed = false;
+    private Rigidbody2D _rb;
 
-    void Start()
+    void Awake()
     {
 	_target = GameObject.FindGameObjectsWithTag(_targetTag)[0];
-	_minDistanceTarget = _minDistanceTarget + (Random.Range(0f, (_minDistanceTarget * _minDistanceTargetRandomizer)) - (_minDistanceTargetRandomizer / 2));
-	if (_encercle) { _encerclementModifier = CalculateRandomEncerclementVector(_minDistanceTarget); }
+	_rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        Move();
+        move();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-	// when a collision occures, it uses the colliders raycast methode from the attached gameObject
-	// (less convoluted, collider already has starting position and already ignores itself)
-	if (_debug) { Debug.DrawLine(gameObject.transform.position, Vector2.MoveTowards(gameObject.transform.position, _target.transform.position, _colliderRadius), Color.white, 0.1f); }
-	// 1f as a movetowards step cuz it doesn't matter
-	if (gameObject.GetComponent<Collider2D>().Raycast(_target.transform.position, _iDoNotNeedThis, _colliderRadius*2) > 0)
-        {
-	    _isObstructed = true;
-	}
-	else
-	{
-	    _isObstructed = false;
-	}
-    }
-
-    private void OnCollisionExit2D()
-    {
-	_isObstructed = false;
-    }
-
-    private void Move()
+    private void move()
     {
 	Vector2 targetPosition = _target.transform.position;
-	// Je doit faire cette partie puisque _target.transform.position est un vecteur3
-	targetPosition = targetPosition + _encerclementModifier;
-
-	if (!_isObstructed)
-	{
-	    if (_debug) { Debug.DrawLine(gameObject.transform.position, targetPosition, Color.red, 0.1f); }
-	    transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPosition, _speed * Time.deltaTime);
-	}
+	_rb.MovePosition(Vector2.MoveTowards(gameObject.transform.position, targetPosition, _speed * Time.fixedDeltaTime));
     }
 }
