@@ -7,6 +7,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float _playerSpeed = 10f;
 
     private Vector2 _direction;
+    private Animator _anim;
+
+    private void Start()
+    {
+	_anim = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -17,6 +23,9 @@ public class Player : MonoBehaviour
     {
 	float directionX = Input.GetAxisRaw("Horizontal");
 	float directionY = Input.GetAxisRaw("Vertical");
+
+	_anim.SetFloat("InputX", directionX);
+	_anim.SetFloat("InputY", directionY);
 
 	_direction = new Vector2(directionX, directionY);
 	_direction.Normalize();
