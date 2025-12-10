@@ -10,16 +10,16 @@ public class SpawnManager : MonoBehaviour
 
     public bool _spawnActif = true;
 
-    [Header("Debug")]
+
     [SerializeField] private bool _debug = false;
     [SerializeField] private int _maxAmount = 0;
 
-    private Vector3 _spawnerPosition;
+    private Transform _spawnerTransform;
 
 
     void Start()
     {
-        _spawnerPosition = GetComponent<Transform>().position;
+        _spawnerTransform = GetComponent<Transform>();
 	StartCoroutine(SpawnCoroutine());
     }
 
@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
     {
 	while (_spawnActif)
 	{
-	   Instantiate(_spawn, _spawnerPosition, Quaternion.identity);
+	   Instantiate(_spawn, _spawnerTransform.position, Quaternion.identity);
 	   float waitTime = _rate + (Random.Range(0f, (_rate * _rateRandomizer) - (_rateRandomizer / 2)));
 	   
 	   _maxAmount--;
