@@ -13,11 +13,13 @@ public class Enemy : MonoBehaviour
 
     private GameObject _target;
     private Rigidbody2D _rb;
+    private Animator _anim;
 
     void Awake()
     {
 	_target = GameObject.FindGameObjectsWithTag(_targetTag)[0];
 	_rb = gameObject.GetComponent<Rigidbody2D>();
+	_anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -28,6 +30,12 @@ public class Enemy : MonoBehaviour
     private void move()
     {
 	Vector2 targetPosition = _target.transform.position;
-	_rb.MovePosition(Vector2.MoveTowards(gameObject.transform.position, targetPosition, _speed * Time.fixedDeltaTime));
+	Vector2 moveTowards = Vector2.MoveTowards(gameObject.transform.position, targetPosition, _speed * Time.fixedDeltaTime);
+	
+	_rb.MovePosition(moveTowards);
+
+	moveTowards.Normalize();
+	_anim.SetFloat("InputX", moveTowards.x);
+	_anim.SetFloat("InputY", moveTowards.y);
     }
 }
