@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -167,7 +167,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTag: Player
-  _speed: 0.5
+  _enemyLife: 50
+  _drop: {fileID: 1372687685882342940, guid: 65cd55b0dd546b70d924d432631fafc7, type: 3}
+  _speed: 1
+  _speedRandomizer: 0.3
 --- !u!95 &6777722932387629129
 Animator:
   serializedVersion: 7

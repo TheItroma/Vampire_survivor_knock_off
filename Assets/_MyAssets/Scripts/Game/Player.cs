@@ -3,9 +3,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Variable definition
-    [Header("Propreties")]
+    [Header("Characteristiques")]
     [SerializeField] private float _playerSpeed = 10f;
     [SerializeField] private int _playerLife = 100;
+
+    [SerializeField] private float _collectionDistance = 2f;
+    public float CollectionDistance => _collectionDistance;
 
     private Vector2 _direction;
     private Animator _anim;
@@ -20,10 +23,11 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-	if (collision.collider.tag == "Enemy") {
+	if (other.collider.tag == "Enemy") {
 	    _anim.SetBool("IsDamaged", true);
+	    other.collider.GetComponent<Enemy>().Damage(115);
 	}
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -50,8 +54,12 @@ public class Player : MonoBehaviour
 
     // Methode publiques
 
-    public void Degats(int degat)
+    public void Damage(int p_degat)
     {
-	_playerLife -= degat;
+	_playerLife -= p_degat;
+	if (_playerLife < 1)
+	{
+	    Destroy(this.gameObject);
+	}
     }
 }
