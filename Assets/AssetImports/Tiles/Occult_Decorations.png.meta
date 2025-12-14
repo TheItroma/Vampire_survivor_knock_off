@@ -4784,7 +4784,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Decorations_196
+      name: Magnet
       rect:
         serializedVersion: 2
         x: 192
@@ -9822,7 +9822,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Decorations_425
+      name: Eye
       rect:
         serializedVersion: 2
         x: 80
@@ -11046,6 +11046,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Drop: -143236802
+      Eye: 1068066893
+      Magnet: 710487625
       Occult_Decorations_0: -2592588641202251309
       Occult_Decorations_1: 2040830189917809325
       Occult_Decorations_10: -178231328419600057
@@ -11153,7 +11155,6 @@ TextureImporter:
       Occult_Decorations_193: 1394612560
       Occult_Decorations_194: 103822353
       Occult_Decorations_195: -246828118
-      Occult_Decorations_196: 710487625
       Occult_Decorations_197: -166331346
       Occult_Decorations_198: 1504040776
       Occult_Decorations_199: -2068620636
@@ -11407,7 +11408,6 @@ TextureImporter:
       Occult_Decorations_422: -1679077025
       Occult_Decorations_423: 872120596
       Occult_Decorations_424: -482800420
-      Occult_Decorations_425: 1068066893
       Occult_Decorations_426: -646804556
       Occult_Decorations_427: 748269412
       Occult_Decorations_428: -746400511

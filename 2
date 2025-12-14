@@ -1,20 +1,14 @@
 using UnityEngine;
-using System.Linq;
 using System.Collections;
-using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
 
-    [Header("Characteristiques")]
+[Header("Characteristiques")]
     [SerializeField] private string _targetTag = "Player";
     [SerializeField] private int _enemyLife = 50;
-
-    [Header("Le loot possible et ces chances")]
-    [SerializeField] private int _points = 30;
-    [SerializeField] private int _dropAmount = 1;
-    [SerializeField] private List<GameObject> _drops = new List<GameObject>();
-    [SerializeField] private List<float> _percentages = new List<float>();
+    [SerializeField] private GameObject _drop = default(GameObject);
+    [SerializeField] private GameObject _magnet = default(GameObject);
     
     [Header("Mouvement")]
     [SerializeField] private float _speed = 3.0f;
@@ -65,45 +59,25 @@ public class Enemy : MonoBehaviour
 
 	if (_enemyLife < 1)
 	{
+	    // DONNE LES POINTS
 	    _anim.SetBool("IsDamaged", false);
 	    _anim.SetBool("IsDead", true);
 	}
     }
     
-    private List<GameObject> GetDrops()
-    {
-	float RandVal = Random.value;
-
-	List<GameObject> Possible = new List<GameObject>();
-	for (int i = 0; i < _percentages.Count; i++)
-	{
-	    if (_percentages[i] >= RandVal)
-	    {
-		Possible.Add(_drops[i]);
-	    }
-	}
-
-	List<GameObject> Returned = new List<GameObject>();
-	for (int i = 0; i < _dropAmount; i++)
-	{
-	    Returned.Add(Possible[Random.Range(0, Possible.Count)]);
-	}
-	return Returned;
-    }
     // Cette fonction est activer a la fin de l'animation de mort pour des raisons evidentes
-    public void SpawnDrops()
+    public void SpawnDrop()
     {
-	if (_drops.Count != _percentages.Count)
+	float random = Random.Range(1f, 5f);
+	Debug.Log(random);
+	if ( == 2f)
 	{
-	    Debug.Log("Table de loot pas bonne");
+	    Instantiate(_magnet, GetComponent<Transform>().position, Quaternion.identity);
 	}
-
-	foreach (GameObject Drop in GetDrops())
+	else
 	{
-	    Instantiate(Drop, gameObject.transform.position, Quaternion.identity);
+	    Instantiate(_drop, GetComponent<Transform>().position, Quaternion.identity);
 	}
-
-	GameManager.Instance.IncreaseScore(_points);
 	Destroy(this.gameObject);
     }
 }

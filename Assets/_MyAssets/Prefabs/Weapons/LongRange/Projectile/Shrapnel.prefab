@@ -46,12 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028151ecf5888d4685abeed02792888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _speedRandomizer: 0.1
+  _speed: 8
+  _speedRandomizer: 0
   _targetTag: Enemy
   _piercing: 3
-  _isIndestructible: 1
-  _maxDistance: 1
+  _isIndestructible: 0
+  _maxDistance: 20
   _damage: 25
   _isSeeking: 0
   _turnSpeed: 0
@@ -90,7 +90,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.39}
+  m_Offset: {x: 0.36, y: 0}
   m_Radius: 0.19
 --- !u!1 &3160952289583410876
 GameObject:
@@ -117,13 +117,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3160952289583410876}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.42261827, w: 0.9063079}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9396926, w: 0.34202018}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1831823063671132395}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -50}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -140}
 --- !u!212 &8490013201345093710
 SpriteRenderer:
   m_ObjectHideFlags: 0

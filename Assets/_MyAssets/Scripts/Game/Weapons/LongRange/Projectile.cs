@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int _piercing = 1;
 
     [SerializeField] private bool _isIndestructible = false;
-    [SerializeField] private float _maxDistance = 1f;
+    [SerializeField] private float _maxDistance = 20f;
 
     // Je suis pas trop sure si cette section est une bonne idee
     [SerializeField] public int _damage;
@@ -24,7 +24,6 @@ public class Projectile : MonoBehaviour
     private float _angle;
     private Vector2 _direction;
 
-    private GameObject _target = default(GameObject);
 
     private void Start()
     {
@@ -39,6 +38,15 @@ public class Projectile : MonoBehaviour
 	if (_isSeeking)
 	{
 	    // Make it so that it only calculates nearest enemies before instantiation in the gameManager
+	}
+    }
+
+    private void FixedUpdate()
+    {
+	float Distance = Vector2.Distance(gameObject.transform.position, FindAnyObjectByType<Player>().transform.position);
+	if (Distance >= _maxDistance)
+	{
+	    Destroy(this.gameObject);
 	}
     }
 

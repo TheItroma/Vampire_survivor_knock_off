@@ -152,8 +152,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.5}
-  m_Radius: 0.51
+  m_Offset: {x: 0, y: -0.3}
+  m_Radius: 0.42
 --- !u!114 &3958828481333184319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetTag: Player
   _enemyLife: 50
-  _drop: {fileID: 1372687685882342940, guid: 65cd55b0dd546b70d924d432631fafc7, type: 3}
+  _points: 30
+  _dropAmount: 1
+  _drops:
+  - {fileID: 1372687685882342940, guid: 65cd55b0dd546b70d924d432631fafc7, type: 3}
+  - {fileID: 1372687685882342940, guid: b1f6a662d361d8dbbad32cfdf45c369b, type: 3}
+  _percentages:
+  - 1
+  - 0.1
   _speed: 1
   _speedRandomizer: 0.3
 --- !u!95 &6777722932387629129

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1897916584178494795}
   - component: {fileID: 2692305022888375174}
   m_Layer: 0
-  m_Name: EnemyDrop
+  m_Name: Magnet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -143236802, guid: 3dec0d85f0def7b5ca3a8f81ef21bedb, type: 3}
+  m_Sprite: {fileID: 710487625, guid: 3dec0d85f0def7b5ca3a8f81ef21bedb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,5 +101,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetTag: Player
-  _speed: 4.2
+  _speed: 5.3
   _speedRandomizer: 0.1
+  _onCollected:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2692305022888375174}
+        m_TargetAssemblyTypeName: Drop, Assembly-CSharp
+        m_MethodName: IncreasePickupRange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartCoroutine(IncreaseCollectionDistance)
+          m_BoolArgument: 0
+        m_CallState: 2
+  _duration: 0

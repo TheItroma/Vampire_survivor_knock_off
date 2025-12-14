@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.Events;
 
 public class Drop : MonoBehaviour
 {
     [Header("Characteristiques")]
-    [SerializeField] private string _targetTag = "Player";
+    // [SerializeField] private string _targetTag = "Player";
 
     // Doit etre plus rapid que le joueur
     [SerializeField] private float _speed = 2.0f;
@@ -11,9 +13,12 @@ public class Drop : MonoBehaviour
     // Randomizer ou pas?
     [SerializeField] private float _speedRandomizer = 0.3f;
 
-    private Player _target;
+    [Header("Effet")]
+    [SerializeField] private UnityEvent _onCollected;
+    [SerializeField] private float _duration;
 
-    [SerializeField] bool _startCollection = false;
+    private Player _target;
+    private bool _startCollection = false;
 
     private void Start()
     {
@@ -46,7 +51,9 @@ public class Drop : MonoBehaviour
     private void GetCollected()
     {
 	Debug.Log("GET COLLECTED LOOSER");
+	// Tout les drops sont des currency, quelleque un avec effets special
 	GameManager.Instance.IncreaseCurrency();
+	_onCollected?.Invoke();
         Destroy(this.gameObject);
     }
 
@@ -57,5 +64,20 @@ public class Drop : MonoBehaviour
 	{
 	    GetCollected();
 	}
+    }
+
+
+    // ------------------ DIFFERENTES ACTIONS QUE LE COLLECTIBLE PEUX FAIRE ----------------------
+
+    public void IncreasePickupRange()
+    {
+	StartCoroutine(IncreasePickupRangeTemporarely());
+    }
+
+    IEnumerator IncreasePickupRangeTemporarely()
+    {
+	FindAnyObjectByType<Player>().IncreaseCollectionDistance(200);
+	yield return new WaitForSeconds(_duration);
+	FindAnyObjectByType<Player>().IncreaseCollectionDistance(-200);
     }
 }

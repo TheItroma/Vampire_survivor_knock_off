@@ -62,4 +62,9 @@ public class Player : MonoBehaviour
 	    Destroy(this.gameObject);
 	}
     }
+    
+    public void IncreaseCollectionDistance(int p_amount)
+    {
+	_collectionDistance += p_amount;
+    }
 }
