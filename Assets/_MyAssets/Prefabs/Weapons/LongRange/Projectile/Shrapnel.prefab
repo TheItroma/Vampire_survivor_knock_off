@@ -46,16 +46,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028151ecf5888d4685abeed02792888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
-  _speedRandomizer: 0
-  _targetTag: Enemy
+  _damage: 25
   _piercing: 3
   _isIndestructible: 0
-  _maxDistance: 20
-  _damage: 25
+  _maxDistance: 50
+  _maxDuration: 20
   _isSeeking: 0
-  _turnSpeed: 0
-  _turnSpeedRandomizer: 0
+  _speed: 6
+  _speedRandomizer: 0
+  _turnSpeed: 1
+  _turnSpeedRandomizer: 0.1
+  _targetTag: Enemy
 --- !u!58 &7683464267203585279
 CircleCollider2D:
   m_ObjectHideFlags: 0

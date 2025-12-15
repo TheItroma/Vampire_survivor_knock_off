@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     public void Damage(int p_degat)
     {
 	_playerLife -= p_degat;
+	GameManager.Instance.SetHealth(_playerLife);
 	if (_playerLife < 1)
 	{
 	    Destroy(this.gameObject);

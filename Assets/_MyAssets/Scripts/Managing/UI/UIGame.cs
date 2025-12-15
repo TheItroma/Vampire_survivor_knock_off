@@ -1,16 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIGame : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Slider _healthBar;
 
-    // Update is called once per frame
-    void Update()
+    public void SetHealth(int p_health)
     {
-        
+	_healthBar.value = p_health;
     }
 }

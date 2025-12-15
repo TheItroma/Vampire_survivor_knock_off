@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 	if (other.collider.tag == _targetTag)
 	{
 	    // Voire comment ne pas avoir a entre le <Player>
-	    // _target.GetComponent<Player>().Damage(4);
+	     _target.GetComponent<Player>().Damage(4);
 	}
     }
 

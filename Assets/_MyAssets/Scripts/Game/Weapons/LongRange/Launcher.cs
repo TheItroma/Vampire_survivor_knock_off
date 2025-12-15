@@ -18,17 +18,18 @@ public class Launcher : MonoBehaviour
     private Vector2[] _positions;
     private float[] _angles;
     
-    private void Awake()
+    private void Start()
     {
 	_positions = new Vector2[_resolution];
 	_angles = new float[_resolution];
 
+	// Si tous a la fois, s'assurer que le firerate rest proportionel
 	if (_allAtOnce)
 	{
 	    _fireRate *= _resolution;
 	}
 	
-	// Cree une array de tout les transforms
+	// Cree des listes des angles et position
 	float AngleIncrements = (Mathf.PI * 2f) / (float)_resolution;
 	float Angle = 0f;
 
@@ -44,13 +45,11 @@ public class Launcher : MonoBehaviour
 
     IEnumerator LaunchCoroutine()
     {
-	GameObject Projectile;
 	while (_isEquiped)
 	{
 	    for (int i = 0; i < _resolution; i++)
 	    {
-		Projectile = Instantiate(_projectile, _positions[i] + (Vector2)gameObject.transform.position, Quaternion.identity);
-		Projectile.transform.Rotate(0f, 0f, _angles[i]);
+		Instantiate(_projectile, _positions[i] + (Vector2)gameObject.transform.position, Quaternion.Euler(0f, 0f, _angles[i]));
 
 		if (!_allAtOnce) { yield return new WaitForSeconds(_fireRate); }
 	    }

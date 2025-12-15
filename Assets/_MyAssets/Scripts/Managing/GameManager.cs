@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _spawnRate = 1f;
     [SerializeField] private float _spawnRateIncreaseRate = 0.1f;
 
+    [SerializeField] private UIGame _uiGame;
+
     private int _score;
     private int _currency;
 
@@ -29,11 +31,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+	_uiGame = FindAnyObjectByType<UIGame>();
+    }
+
     private void IncreaseRate()
     {
 	_spawnRate += _spawnRateIncreaseRate;
     }
 
+    public void SetHealth(int p_health)
+    {
+	_uiGame.SetHealth(p_health);
+    }
+	
     public void IncreaseCurrency()
     {
 	_currency++;
@@ -50,14 +62,7 @@ public class GameManager : MonoBehaviour
 	}
     }
 
-    // Perdu ben trop de temp a essayer de faire une algo pour ca alors que linq orderby exist
-    public GameObject[] GetNearestEnemies(Vector2 p_position, int p_amount)
-    {
-        return GameObject.FindGameObjectsWithTag("Enemy")
-	    .OrderBy(Enemy => ((Vector2)Enemy.transform.position - p_position).sqrMagnitude)
-	    .Take(p_amount)
-	    .ToArray();
-    }
+
 
     public void GameOver()
     {
