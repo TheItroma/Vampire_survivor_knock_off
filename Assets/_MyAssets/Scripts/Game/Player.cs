@@ -1,71 +1,81 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     // Variable definition
     [Header("Characteristiques")]
-    [SerializeField] private float _playerSpeed = 10f;
-    [SerializeField] private int _playerLife = 100;
-
     [SerializeField] private float _collectionDistance = 2f;
     public float CollectionDistance => _collectionDistance;
 
-    private Vector2 _direction;
-    private Animator _anim;
+    [SerializeField] private GameObject _weapon = default(GameObject);
 
-    private void Start()
+    protected Vector2 _direction;
+
+    private void Awake()
     {
+	_isPlayer = true;
+    }
+
+    protected override void Start()
+    {
+	base.Start();
+	_weapon = Instantiate(_weapon, transform);
 	_anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        Move();
+	if (_canMove) { Move(); }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-	if (other.collider.tag == "Enemy") {
-	    _anim.SetBool("IsDamaged", true);
+	// Je sais que ca ce repete mais dans le if, il est utiliser come operateur bool
+	if (other.collider.GetComponent<Enemy>()) {
+	    // Et dans l'autre, un component
 	    other.collider.GetComponent<Enemy>().Damage(115);
 	}
     }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-	_anim.SetBool("IsDamaged", false);
-    }
-
 
     // Methode prives
 
-    private void Move()
+    protected override void Move()
     {
-	float directionX = Input.GetAxisRaw("Horizontal");
-	float directionY = Input.GetAxisRaw("Vertical");
+	float DirectionX = Input.GetAxisRaw("Horizontal");
+	float DirectionY = Input.GetAxisRaw("Vertical");
 
-	_anim.SetFloat("InputX", directionX);
-	_anim.SetFloat("InputY", directionY);
+	// J'aime pas le system de states machine, ce n'est pas ideale pour les animation pixel art nessesitant tres peux de transitions.
+	// Blend tree are usefull tho as it allows to modulate speed from floats.
+	_anim.SetBool("IsMoving", !(DirectionX == 0 && DirectionY == 0));
+	_anim.SetFloat("InputX", DirectionX);
+	_anim.SetFloat("InputY", DirectionY);
 
-	_direction = new Vector2(directionX, directionY);
+	_direction = new Vector2(DirectionX, DirectionY);
 	_direction.Normalize();
 
-	transform.Translate(_direction * Time.deltaTime * _playerSpeed);
+	transform.Translate(_direction * Time.deltaTime * _speed);
+    }
+
+    protected override void Dies()
+    {
+	GameManager.Instance.RemoveEntity(gameObject);
+	_anim.SetTrigger("IsDead");
+	_canMove = false;
+	GetComponent<CircleCollider2D>().enabled = false;
+	GameManager.Instance.GameOver();
     }
 
     // Methode publiques
 
-    public void Damage(int p_degat)
+    public override void Damage(int p_degat)
     {
-	_playerLife -= p_degat;
-	GameManager.Instance.SetHealth(_playerLife);
-	if (_playerLife < 1)
-	{
-	    Destroy(this.gameObject);
-	}
+	GameManager.Instance.SetHealth(_health);
+	base.Damage(p_degat);
     }
     
     public void IncreaseCollectionDistance(int p_amount)
     {
 	_collectionDistance += p_amount;
     }
+
 }

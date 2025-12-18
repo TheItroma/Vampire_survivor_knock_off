@@ -77,9 +77,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 99097537
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_Sprite: {fileID: 3655310422065455106, guid: cd859b1af6e8ec081abd79a085a00813, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -166,8 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217f35febb9979a499838e1aac705f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetTag: Player
-  _enemyLife: 50
+  _health: 10
+  _speed: 2
+  _isPlayer: 0
   _points: 30
   _dropAmount: 1
   _drops:
@@ -176,7 +177,6 @@ MonoBehaviour:
   _percentages:
   - 1
   - 0.02
-  _speed: 1
   _speedRandomizer: 0.3
 --- !u!95 &6777722932387629129
 Animator:

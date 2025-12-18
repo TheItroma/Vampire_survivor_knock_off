@@ -12,6 +12,9 @@ public class Follow : MonoBehaviour
     
     private void Update()
     {
-	transform.position = new Vector3(_toFollow.position.x, _toFollow.position.y, _zOffset);
+	if (_toFollow)
+	{
+	    transform.position = new Vector3(_toFollow.position.x, _toFollow.position.y, _zOffset);
+	}
     }
 }

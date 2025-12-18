@@ -13,9 +13,9 @@ public class SpawnManager : MonoBehaviour
     // Le multiple qui gouverne la densite simuler des ennemies hors vue selon la direction du joueur
     [SerializeField] private float _directionModifier;
 
-
     public bool _spawnActif = true;
 
+    [Header("Debug")]
     [SerializeField] private bool _debug = false;
     [SerializeField] private int _maxAmount = 0;
 

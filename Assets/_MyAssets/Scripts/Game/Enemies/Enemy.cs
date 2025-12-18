@@ -3,107 +3,83 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
-
-    [Header("Characteristiques")]
-    [SerializeField] private string _targetTag = "Player";
-    [SerializeField] private int _enemyLife = 50;
-
     [Header("Le loot possible et ces chances")]
-    [SerializeField] private int _points = 30;
-    [SerializeField] private int _dropAmount = 1;
-    [SerializeField] private List<GameObject> _drops = new List<GameObject>();
-    [SerializeField] private List<float> _percentages = new List<float>();
+    [SerializeField] protected int _points = 30;
+    [SerializeField] protected int _dropAmount = 1;
+    [SerializeField] protected List<GameObject> _drops = new List<GameObject>();
+    [SerializeField] protected List<float> _percentages = new List<float>();
+    [SerializeField] protected GameObject _weapon = default(GameObject);
     
     [Header("Mouvement")]
-    [SerializeField] private float _speed = 3.0f;
-    [SerializeField] private float _speedRandomizer = 0.3f;
-
-
-    private GameObject _target;
-    private Rigidbody2D _rb;
-    private Animator _anim;
+    [SerializeField] protected float _speedRandomizer = 0.3f;
+    
+    // system qui pourrait permetre des ennemies qui ce retourne contre les siens
+    protected bool _isMad = false;
+    protected GameObject _target;
+    protected Rigidbody2D _rb;
 
     private void Awake()
     {
-	_target = GameObject.FindGameObjectsWithTag(_targetTag)[0];
-	_rb = gameObject.GetComponent<Rigidbody2D>();
+	_isPlayer = false;
+	_target = FindAnyObjectByType<Player>().gameObject;
+	_rb = GetComponent<Rigidbody2D>();
 	_anim = GetComponent<Animator>();
 	_speed = MyFunctions.GetRandomizedByPercentage(_speed, _speedRandomizer);
     }
 
+    protected override void Start()
+    {
+	base.Start();
+	_weapon = Instantiate(_weapon, transform);
+    }
+ 
     private void FixedUpdate()
     {
-        Move();
+	Move();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
-	if (other.collider.tag == _targetTag)
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+	if (other.collider.GetComponent<Entity>().IsPlayer() || _isMad)
 	{
 	    // Voire comment ne pas avoir a entre le <Player>
-	     _target.GetComponent<Player>().Damage(4);
+	    // Fixed avec la class <Entity>
+	    _target.GetComponent<Entity>().Damage(4);
 	}
     }
 
-    private void Move()
+    protected override void Move()
     {
-	Vector2 moveTowards = Vector2.MoveTowards(gameObject.transform.position, _target.transform.position, _speed * Time.fixedDeltaTime);
+	Vector2 MoveTowards = Vector2.MoveTowards(transform.position, _target.transform.position, _speed * Time.fixedDeltaTime);
 	
-	_rb.MovePosition(moveTowards);
+	_rb.MovePosition(MoveTowards);
 
-	moveTowards.Normalize();
-	_anim.SetFloat("InputX", moveTowards.x);
-	_anim.SetFloat("InputY", moveTowards.y);
+	MoveTowards.Normalize();
+	_anim.SetFloat("InputX", MoveTowards.x);
+	_anim.SetFloat("InputY", MoveTowards.y);
+    }
+
+    protected override void Dies()
+    {
+	GameManager.Instance.RemoveEntity(gameObject);
+	_canMove = false;
+	GetComponent<CircleCollider2D>().enabled = false;
+	_anim.SetTrigger("IsDead");
     }
     
-    public void Damage(int p_amount)
-    {
-	_enemyLife -= p_amount;
-	_anim.SetBool("IsDamaged", true);
-	// SET LES ISDAMAGED TO FALSE A QQPART
 
-	if (_enemyLife < 1)
-	{
-	    _anim.SetBool("IsDamaged", false);
-	    _anim.SetBool("IsDead", true);
-	}
-    }
-    
-    private List<GameObject> GetDrops()
-    {
-	float RandVal = Random.value;
-
-	List<GameObject> Possible = new List<GameObject>();
-	for (int i = 0; i < _percentages.Count; i++)
-	{
-	    if (_percentages[i] >= RandVal)
-	    {
-		Possible.Add(_drops[i]);
-	    }
-	}
-
-	List<GameObject> Returned = new List<GameObject>();
-	for (int i = 0; i < _dropAmount; i++)
-	{
-	    Returned.Add(Possible[Random.Range(0, Possible.Count)]);
-	}
-	return Returned;
-    }
     // Cette fonction est activer a la fin de l'animation de mort pour des raisons evidentes
     public void SpawnDrops()
     {
-	if (_drops.Count != _percentages.Count)
+	foreach (GameObject Drop in MyFunctions.GetDrops(_drops, _percentages, _dropAmount))
 	{
-	    Debug.Log("Table de loot pas bonne");
+	    Instantiate(Drop, transform.position, Quaternion.identity);
 	}
 
-	foreach (GameObject Drop in GetDrops())
-	{
-	    Instantiate(Drop, gameObject.transform.position, Quaternion.identity);
-	}
+	Destroy(this.gameObject);
 
 	GameManager.Instance.IncreaseScore(_points);
-	Destroy(this.gameObject);
     }
 }
