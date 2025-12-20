@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,11 +77,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 99097537
-  m_SortingLayer: 2
+  m_SortingLayerID: -2141032233
+  m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 3655310422065455106, guid: cd859b1af6e8ec081abd79a085a00813, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -3477092303265165385, guid: cd859b1af6e8ec081abd79a085a00813, type: 3}
+  m_Color: {r: 1, g: 0.8537736, b: 0.8537736, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -166,18 +166,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217f35febb9979a499838e1aac705f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 10
+  _health: 30
   _speed: 2
-  _points: 30
+  _weaponPrefabs:
+  - {fileID: 6525948297019304736, guid: dbf6424221fc56ddab63983cc355e366, type: 3}
+  _canMove: 1
+  _points: 50
   _dropAmount: 1
   _drops:
   - {fileID: 1372687685882342940, guid: 65cd55b0dd546b70d924d432631fafc7, type: 3}
   - {fileID: 1372687685882342940, guid: b1f6a662d361d8dbbad32cfdf45c369b, type: 3}
+  - {fileID: 1372687685882342940, guid: 8ecce2c6edf8b5437a7732ebd13c4f33, type: 3}
   _percentages:
   - 1
-  - 0.02
-  _weapon: {fileID: 6525948297019304736, guid: dbf6424221fc56ddab63983cc355e366, type: 3}
+  - 0.1
+  - 0.2
   _speedRandomizer: 0.3
+  _maxDistanceToPlayer: 0
 --- !u!95 &6777722932387629129
 Animator:
   serializedVersion: 7
@@ -188,7 +193,7 @@ Animator:
   m_GameObject: {fileID: 5720321557207941965}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a3151161424990bd6aba64d4a898a5ae, type: 2}
+  m_Controller: {fileID: 9100000, guid: 328fb079c4c5b0d019135f5329141eec, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

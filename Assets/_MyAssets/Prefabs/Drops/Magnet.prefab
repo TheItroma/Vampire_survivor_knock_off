@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c07d2e85100410583ac72f7ade050f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5.3
+  _speed: 8
   _speedRandomizer: 0.1
   _onCollected:
     m_PersistentCalls:
@@ -117,4 +117,4 @@ MonoBehaviour:
           m_StringArgument: StartCoroutine(IncreaseCollectionDistance)
           m_BoolArgument: 0
         m_CallState: 2
-  _duration: 0
+  _duration: 5

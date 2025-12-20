@@ -1507,7 +1507,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_51
+      name: BigSouth1
       rect:
         serializedVersion: 2
         x: 71
@@ -1529,7 +1529,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_52
+      name: BigSouth0
       rect:
         serializedVersion: 2
         x: 95
@@ -1551,7 +1551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_53
+      name: BigSouth2
       rect:
         serializedVersion: 2
         x: 119
@@ -1771,7 +1771,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_63
+      name: BigWest1
       rect:
         serializedVersion: 2
         x: 78
@@ -1793,7 +1793,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_64
+      name: BigWest0
       rect:
         serializedVersion: 2
         x: 102
@@ -1815,7 +1815,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_65
+      name: BigWest2
       rect:
         serializedVersion: 2
         x: 126
@@ -2035,7 +2035,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_75
+      name: BigEast1
       rect:
         serializedVersion: 2
         x: 75
@@ -2057,7 +2057,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_76
+      name: BigEast0
       rect:
         serializedVersion: 2
         x: 101
@@ -2079,7 +2079,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_77
+      name: BigEast2
       rect:
         serializedVersion: 2
         x: 125
@@ -2299,7 +2299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_87
+      name: BigNorth1
       rect:
         serializedVersion: 2
         x: 71
@@ -2321,7 +2321,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_88
+      name: BigNorth0
       rect:
         serializedVersion: 2
         x: 95
@@ -2343,7 +2343,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Occult_Enemies_89
+      name: BigNorth2
       rect:
         serializedVersion: 2
         x: 119
@@ -2510,6 +2510,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      BigEast0: -178287889655913491
+      BigEast1: 4744981710076126728
+      BigEast2: 7761898177619459732
+      BigNorth0: -2931937208016237815
+      BigNorth1: -8202649267243821539
+      BigNorth2: -2418709041238574845
+      BigSouth0: -3477092303265165385
+      BigSouth1: 1062234938278890542
+      BigSouth2: -3925678053733698054
+      BigWest0: -3402225479463564424
+      BigWest1: -8322759047128124024
+      BigWest2: -7891753560820144938
       Occult_Enemies_0: -3408002807959611480
       Occult_Enemies_1: 5144523572929367347
       Occult_Enemies_12: -8896852683361508837
@@ -2546,9 +2558,6 @@ TextureImporter:
       Occult_Enemies_49: -1024760008914202384
       Occult_Enemies_5: -602327696665400640
       Occult_Enemies_50: -8761717740059419309
-      Occult_Enemies_51: 1062234938278890542
-      Occult_Enemies_52: -3477092303265165385
-      Occult_Enemies_53: -3925678053733698054
       Occult_Enemies_54: -3531592147811159905
       Occult_Enemies_55: -1205801161448417317
       Occult_Enemies_56: -5176774416201930746
@@ -2559,9 +2568,6 @@ TextureImporter:
       Occult_Enemies_60: -4677338801648378144
       Occult_Enemies_61: 7577401207589636909
       Occult_Enemies_62: -1354259926073779691
-      Occult_Enemies_63: -8322759047128124024
-      Occult_Enemies_64: -3402225479463564424
-      Occult_Enemies_65: -7891753560820144938
       Occult_Enemies_66: -2449996494813507046
       Occult_Enemies_67: 1357679229647644271
       Occult_Enemies_68: 514880420378336716
@@ -2572,9 +2578,6 @@ TextureImporter:
       Occult_Enemies_72: -3562511305726443776
       Occult_Enemies_73: -7071132394156221720
       Occult_Enemies_74: -5819926406389108867
-      Occult_Enemies_75: 4744981710076126728
-      Occult_Enemies_76: -178287889655913491
-      Occult_Enemies_77: 7761898177619459732
       Occult_Enemies_78: 283213004163396875
       Occult_Enemies_79: 6169348448616927378
       Occult_Enemies_8: 8287159386242701365
@@ -2585,9 +2588,6 @@ TextureImporter:
       Occult_Enemies_84: -1564460853586191796
       Occult_Enemies_85: -6987793139599623829
       Occult_Enemies_86: 1282356251680244638
-      Occult_Enemies_87: -8202649267243821539
-      Occult_Enemies_88: -2931937208016237815
-      Occult_Enemies_89: -2418709041238574845
       Occult_Enemies_90: -5986397997553593595
       Occult_Enemies_91: 2621285343156078326
       Occult_Enemies_92: 6744843926668728174

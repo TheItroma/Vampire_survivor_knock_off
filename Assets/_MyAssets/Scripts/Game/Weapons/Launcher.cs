@@ -14,13 +14,14 @@ public class Launcher : MonoBehaviour
     [SerializeField] private float _radius = 3f;
     [SerializeField] private int _resolution = 1;
     
-    [SerializeField] public bool _isEquiped = true;
+    [SerializeField] public bool _isEquiped = false;
 
     private Vector2[] _positions;
     private float[] _angles;
 
     private List<GameObject> _projectiles = new List<GameObject>();
 
+    private Coroutine _equipCoroutine;
 
     private void Start()
     {
@@ -34,32 +35,50 @@ public class Launcher : MonoBehaviour
 	}
 	
 	// Cree des listes des angles et position
-	float AngleIncrements = (Mathf.PI * 2f) / (float)_resolution;
-	float Angle = 0f;
+	//float AngleIncrements = (Mathf.PI * 2f) / (float)_resolution;
+	//float Angle = 0f;
 
+	//for (int i = 0; i < _resolution; i++)
+	//{
+	//    _positions[i] = MyFunctions.MakeVectorUsingAngle(_radius, Angle);
+	//    _angles[i] = (Angle * Mathf.Rad2Deg);
+	//    Angle += AngleIncrements;
+	//}
+	_angles = MyFunctions.GetRotations(_resolution);
 	for (int i = 0; i < _resolution; i++)
 	{
-	    _positions[i] = MyFunctions.MakeVectorUsingAngle(_radius, Angle);
-	    _angles[i] = (Angle * Mathf.Rad2Deg);
-	    Angle += AngleIncrements;
+	    _positions[i] = MyFunctions.MakeVectorUsingAngle(_radius, _angles[i] * Mathf.Deg2Rad);
 	}
 
-	StartCoroutine(LaunchCoroutine());
+	Equip(true);
     }
 
-    IEnumerator LaunchCoroutine()
+    public void Equip(bool p_isEquiped)
     {
-	while (_isEquiped)
+	_isEquiped = p_isEquiped;
+
+	if (_isEquiped && _equipCoroutine == null)
+	{
+	    _equipCoroutine = StartCoroutine(LaunchCoroutine());
+	}
+	else if (!_isEquiped && _equipCoroutine != null)
+	{
+	    StopCoroutine(_equipCoroutine);
+	    _equipCoroutine = null;
+	}
+    }
+
+    private IEnumerator LaunchCoroutine()
+    {
+	while(true)
 	{
 	    for (int i = 0; i < _resolution; i++)
 	    {
 		GameObject Projectile = Instantiate(_projectile, _positions[i] + (Vector2)gameObject.transform.position, Quaternion.Euler(0f, 0f, _angles[i]));
 		Projectile.GetComponent<Projectile>().SetParent(transform.parent.gameObject);
-
 		if (!_allAtOnce) { yield return new WaitForSeconds(_fireRate); }
 	    }
 	    if (_allAtOnce) { yield return new WaitForSeconds(_fireRate); }
 	}
-	Destroy(this.gameObject);
     }
 }

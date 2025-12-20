@@ -9,6 +9,12 @@ public class Projectile : MonoBehaviour
     // Je suis pas trop sure si cette section est une bonne idee (public)
     [SerializeField] public int _damage;
 
+    [Header("Effet")]
+    [SerializeField] private bool _hasEffect;
+    [SerializeField] private string _effect;
+    [SerializeField] private float _effectMultiplier;
+    [SerializeField] private float _effectDurration;
+
     [Header("Solidite")]
     [SerializeField] private bool _isIndestructible = false;
     [SerializeField] private int _piercing = 1;
@@ -33,11 +39,10 @@ public class Projectile : MonoBehaviour
     private Vector2 _direction;
     private float _distance;
 
-    private bool _canMove;
+    private bool _canMove = true;
     private GameObject _parent;
 
     private Animator _anim;
-    private Rigidbody2D _rb;
 
     private void Start()
     {
@@ -48,7 +53,6 @@ public class Projectile : MonoBehaviour
 	_angle = transform.eulerAngles.z;
 	_direction = MyFunctions.MakeVectorUsingAngle(1f, _angle * Mathf.Deg2Rad);
 
-	_rb = GetComponent<Rigidbody2D>();
 	//_anim = GetComponent<Animator>();
     }
 
@@ -73,6 +77,8 @@ public class Projectile : MonoBehaviour
 	    if (_target != null)
 	    {
 		Seek();
+		Vector2 MoveTowards = Vector2.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+		transform.position = MoveTowards;
 	    }
 	    else
 	    {
@@ -84,9 +90,8 @@ public class Projectile : MonoBehaviour
 
     private void Move()
     {
-	Vector2 MoveTowards = Vector2.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
-	_rb.MovePosition(MoveTowards);
-	//transform.Translate(_direction * _speed * Time.deltaTime, Space.World);
+	//Vector2 MoveTowards = Vector2.MoveTowards(transform.position, _target.transform.position, _speed * Time.deltaTime);
+	transform.Translate(_direction * _speed * Time.deltaTime, Space.World);
 	//transform.position += (Vector3)(_direction * _speed * Time.deltaTime);
     }
 
@@ -96,9 +101,18 @@ public class Projectile : MonoBehaviour
     {
 	// Si le component entity est attacher et est enemy de parent
 	Entity OtherEntity = other.gameObject.GetComponent<Entity>();
-	if (OtherEntity == null) { Debug.Log("FUCKING KILL ME"); }
     	if (OtherEntity != null && OtherEntity.IsPlayer() != _parent.GetComponent<Entity>().IsPlayer())
 	{
+	    if (_hasEffect)
+	    {
+		if (_effect == "Fire")
+		{
+		    OtherEntity.ApplyEffect("Damage", _effectMultiplier, _effectDurration);
+		    OtherEntity.ApplyEffect("Speed", _effectMultiplier, _effectDurration);
+		}
+		else { ApplyEffect(OtherEntity); }
+	    }
+
 	    OtherEntity.Damage(_damage);
 	    if (!_isIndestructible)
 	    {
@@ -108,7 +122,7 @@ public class Projectile : MonoBehaviour
 	    {
 
 		// Si a toucher le target, change de (question de pas trop tourner en rond)
-		SetTargetToNearest();
+		if (_isSeeking) { SetTargetToNearest(); }
 	    }
 	    else
 	    {
@@ -190,5 +204,9 @@ public class Projectile : MonoBehaviour
     }
 
 
+    private void ApplyEffect(Entity p_target)
+    {
+	p_target.ApplyEffect(_effect, _effectMultiplier, _effectDurration);
+    }
     private void UpdateDistance() { _distance = Vector2.Distance(_parent.transform.position, transform.position); }
 }
