@@ -47,6 +47,6 @@ MonoBehaviour:
   _projectile: {fileID: 426504563884652583, guid: ad8325bf8f381b5ac888a4f0d2fe6cfc, type: 3}
   _allAtOnce: 0
   _fireRate: 0.1
-  _radius: 1
+  _radius: 0
   _resolution: 30
   _isEquiped: 0

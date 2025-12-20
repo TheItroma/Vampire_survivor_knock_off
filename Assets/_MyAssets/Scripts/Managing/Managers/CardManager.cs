@@ -53,15 +53,16 @@ public class CardManager : MonoBehaviour
     // Bon, J'ai programmer un animation mais Je prefaire largement ca
     public IEnumerator GiveHand()
     {
+	int CardNumber = _cardFrontPrefabs.Count;
 	ResetHand();
 	// Cree
-	List<GameObject> DrawnCardFronts = MyFunctions.GetRandomObject(_cardFrontPrefabs, _percentages, 3);
-	for (int i = 0; i < 3; i++)
+	List<GameObject> DrawnCardFronts = MyFunctions.GetRandomObject(_cardFrontPrefabs, _percentages, CardNumber);
+	for (int i = 0; i < CardNumber; i++)
 	{
 	    _cards.Add(Instantiate(DrawnCardFronts[i], transform));
 	}
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < CardNumber; i++)
 	{
 	    yield return new WaitForSeconds(_dramaticPause/2);
 	    Instantiate(_cardBackPrefab, _cards[i].transform);

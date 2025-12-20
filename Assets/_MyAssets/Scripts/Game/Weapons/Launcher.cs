@@ -74,7 +74,7 @@ public class Launcher : MonoBehaviour
 	{
 	    for (int i = 0; i < _resolution; i++)
 	    {
-		GameObject Projectile = Instantiate(_projectile, _positions[i] + (Vector2)gameObject.transform.position, Quaternion.Euler(0f, 0f, _angles[i]));
+		GameObject Projectile = Instantiate(_projectile, _positions[i] + (Vector2)gameObject.transform.position, Quaternion.Euler(0f, 0f, _angles[i] + transform.rotation.eulerAngles.z));
 		Projectile.GetComponent<Projectile>().SetParent(transform.parent.gameObject);
 		if (!_allAtOnce) { yield return new WaitForSeconds(_fireRate); }
 	    }

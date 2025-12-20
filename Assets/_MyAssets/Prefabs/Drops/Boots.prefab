@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 99097537
-  m_SortingLayer: 2
+  m_SortingLayerID: -2141032233
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 6000559873232412606, guid: d63cbf4b42848f794bd82468b9d279ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,14 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c07d2e85100410583ac72f7ade050f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5.3
+  _speed: 8
   _speedRandomizer: 0.1
   _onCollected:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2692305022888375174}
         m_TargetAssemblyTypeName: Drop, Assembly-CSharp
-        m_MethodName: IncreasePickupRange
+        m_MethodName: IncreaseSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -117,4 +117,4 @@ MonoBehaviour:
           m_StringArgument: StartCoroutine(IncreaseCollectionDistance)
           m_BoolArgument: 0
         m_CallState: 2
-  _duration: 0
+  _duration: 5

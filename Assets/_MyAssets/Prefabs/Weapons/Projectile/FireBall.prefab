@@ -51,12 +51,12 @@ MonoBehaviour:
   _damage: 10
   _hasEffect: 0
   _effect: Fire
-  _effectMultiplier: 1.2
+  _effectMultiplier: 1.5
   _effectDurration: 10
   _isIndestructible: 0
   _piercing: 5
   _maxDistance: 50
-  _isSeeking: 1
+  _isSeeking: 0
   _speed: 7
   _speedRandomizer: 0
   _turnSpeed: 0

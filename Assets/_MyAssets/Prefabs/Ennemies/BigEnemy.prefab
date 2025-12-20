@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217f35febb9979a499838e1aac705f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 30
+  _health: 35
   _speed: 2
   _weaponPrefabs:
   - {fileID: 6525948297019304736, guid: dbf6424221fc56ddab63983cc355e366, type: 3}
