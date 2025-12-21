@@ -1,9 +1,0 @@
-Projet Synthese, Arcade, 2D, Controller support :
-
-    Ideas : 
-	Cave environement/Procedurally generated dungeon, Rogue-like, Top view, Bullet hell.
-    
-    To think of :
-	How the hell i'll find sprites/make em
-	Adaptive difficulty?
-	MUUUUSIIIC / Create a story to be inspiered by

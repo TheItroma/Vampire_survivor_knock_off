@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] public AudioClip _entityHurt = default;
-    [SerializeField] public AudioClip _collectSound = default;
+    [SerializeField] private AudioClip _entityHurt = default;
+    [SerializeField] private AudioClip _collectSound = default;
     [Header("Spawn Rate")]
     [SerializeField] private int _rateIncreasePerPoints = 100;
     [SerializeField] private float _spawnRate = 1f;
@@ -65,6 +65,15 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 	UpdateTime();
+    }
+    public AudioClip GetCollectSound()
+    {
+	return _entityHurt;
+    }
+
+    public AudioClip GetEntityHurt()
+    {
+	return _entityHurt;
     }
 
     // ------------------------------------ Suivie du temp ecouler ----------------------------------

@@ -39,7 +39,7 @@ public abstract class Entity : MonoBehaviour
 
     public virtual void Damage(int p_damage)
     {
-	 AudioSource.PlayClipAtPoint(GameManager.Instance._entityHurt, Camera.main.transform.position, 0.8f);
+	AudioSource.PlayClipAtPoint(GameManager.Instance.GetEntityHurt(), transform.position, 0.8f);
 	_health -= Mathf.RoundToInt((float)p_damage * GetModifier("Damage"));
 	_anim.SetTrigger("IsDamaged");
 	if (_health < 1)

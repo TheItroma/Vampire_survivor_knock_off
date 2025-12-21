@@ -50,7 +50,7 @@ public class Drop : MonoBehaviour
 
     private void GetCollected()
     {
-	AudioSource.PlayClipAtPoint(GameManager.Instance._collectSound, Camera.main.transform.position, 0.8f);
+	AudioSource.PlayClipAtPoint(GameManager.Instance.GetCollectSound(), transform.position, 0.8f);
 	// Tout les drops sont des currency, quelleque un avec effets special
 	GameManager.Instance.IncreaseCurrency();
 	_onCollected?.Invoke();
