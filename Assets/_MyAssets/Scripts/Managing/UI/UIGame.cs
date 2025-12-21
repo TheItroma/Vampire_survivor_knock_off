@@ -14,9 +14,6 @@ public class UIGame : MonoBehaviour
     [SerializeField] private Slider _currencyBar;
     [SerializeField] private GameObject _cardPanel = default(GameObject);
     
-    [SerializeField] private GameObject _gameOverPanel = default(GameObject);
-    [SerializeField] private GameObject _gameOverNext = default(GameObject);
-
     private void Awake()
     {
         if(Instance == null)
@@ -56,13 +53,6 @@ public class UIGame : MonoBehaviour
 	_cardPanel.SetActive(p_isActive);
     }
 
-    public void ActivateGameOverPanel()
-    {
-	_gameOverPanel.SetActive(true);
-	_gameOverPanel.GetComponent<Animator>().SetTrigger("Lightning");
-	EventSystem.current.SetSelectedGameObject(_gameOverNext);
-    }
-    
     public void Restart()
     {
 	SceneManager.LoadScene(1);

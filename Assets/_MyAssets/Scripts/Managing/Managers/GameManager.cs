@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,11 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField] public AudioClip _entityHurt = default;
+    [SerializeField] public AudioClip _collectSound = default;
     [Header("Spawn Rate")]
     [SerializeField] private int _rateIncreasePerPoints = 100;
     [SerializeField] private float _spawnRate = 1f;
     [SerializeField] private float _spawnRateIncreaseRate = 0.1f;
-
+    
     [Header("Perks")]
     [SerializeField] private int _cost = 15;
     [SerializeField] private float _inflationRate = 1.4f;
@@ -194,7 +197,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-	UIGame.Instance.ActivateGameOverPanel();
-	TogglePause();
+	SceneManager.LoadScene(2);
     }
 }

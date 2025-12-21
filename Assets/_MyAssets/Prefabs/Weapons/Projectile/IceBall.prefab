@@ -47,15 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028151ecf5888d4685abeed02792888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 5
   _hasEffect: 1
   _effect: Speed
-  _effectMultiplier: 0.9
+  _effectMultiplier: 0.7
   _effectDurration: 3
   _isIndestructible: 0
   _piercing: 1
   _maxDistance: 50
-  _isSeeking: 1
+  _isSeeking: 0
   _speed: 5
   _speedRandomizer: 0.1
   _turnSpeed: 250

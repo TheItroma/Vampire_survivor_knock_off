@@ -1,25 +1,13 @@
 December 20th, 2025
 Finish Sythese (Unity Game Cegep Final)
 
- - Laundry
- - Shower
- - Clean room
- - Shave
  - Add more ennemies, weapons and effects
- - Implement wave counter
- - Expand map
  - Make sounds
- - Make music
  - Make word
 
 Software to install on laptop :
- - ReaperDaw and SurgeXT
  - Neovim
  - Unity
  - Git
 
-Stuff to bring : 
- - Midi cord
- - A change of clothes
- - Controller and cable
-
+Cree Scene de fin

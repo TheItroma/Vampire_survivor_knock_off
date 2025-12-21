@@ -79,6 +79,7 @@ public class CardManager : MonoBehaviour
 	    CardContainer.GetChild(1).gameObject.GetComponent<Animator>().SetTrigger("Reveal");
 	    // Il y a une event dans l'animation qui vas reveler le front
 	}
+
 	EventSystem.current.SetSelectedGameObject(_cards[0]);
 
 	while (!_hasSelected) { yield return null; }

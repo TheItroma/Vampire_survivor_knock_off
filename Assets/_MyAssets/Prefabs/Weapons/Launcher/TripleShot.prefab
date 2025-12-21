@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5819f3ea3f6a9728722f5722687678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 426504563884652583, guid: 9e23519340626016aa4c8740c00e0b83, type: 3}
+  _projectile: {fileID: 426504563884652583, guid: 46c240ca9eeefff42ae91ee3256d8e12, type: 3}
   _allAtOnce: 1
   _fireRate: 2
   _radius: 1.2
